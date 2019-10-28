@@ -1,8 +1,8 @@
-package com.sample.IfElse;
+package com.sample;
 
 import java.util.Scanner;
 
-public class Solution {
+public class IfElse {
 
     private static final Scanner scanner = new Scanner(System.in);
 
