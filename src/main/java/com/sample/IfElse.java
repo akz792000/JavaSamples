@@ -2,6 +2,22 @@ package com.sample;
 
 import java.util.Scanner;
 
+/*
+--input--
+3
+
+--output--
+Weird
+*/
+
+/*
+--input--
+24
+
+--output--
+Not Weird
+*/
+
 public class IfElse {
 
     private static final Scanner scanner = new Scanner(System.in);

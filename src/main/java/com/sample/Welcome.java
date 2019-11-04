@@ -1,5 +1,13 @@
 package com.sample;
 
+/*
+--input--
+08 05 2015
+
+--output--
+WEDNESDAY
+*/
+
 public class Welcome {
 
     public static void main(String[] args) {

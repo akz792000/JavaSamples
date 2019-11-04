@@ -2,6 +2,18 @@ package com.sample;
 
 import java.util.Scanner;
 
+/*
+--input--
+42
+100
+125
+
+--output--
+42
+100
+125
+*/
+
 public class StdInOutI {
 
     public static void main(String[] args) {

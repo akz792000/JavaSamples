@@ -3,6 +3,14 @@ package com.sample;
 import java.security.Permission;
 import java.util.Scanner;
 
+/*
+--input--
+100
+
+--output--
+Good job
+*/
+
 public class IntToString {
     public static void main(String[] args) {
 

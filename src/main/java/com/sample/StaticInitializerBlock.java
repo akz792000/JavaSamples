@@ -2,6 +2,24 @@ package com.sample;
 
 import java.util.Scanner;
 
+/*
+--input--
+1
+3
+
+--output--
+3
+*/
+
+/*
+--input--
+-1
+2
+
+--output--
+java.lang.Exception: Breadth and height must be positive
+*/
+
 public class StaticInitializerBlock {
     static boolean flag = true;
     static int B, H;

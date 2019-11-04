@@ -2,6 +2,20 @@ package com.sample;
 
 import java.util.Scanner;
 
+/*
+--input--
+java 100
+cpp 65
+python 50
+
+--output--
+================================
+java           100
+cpp            065
+python         050
+================================
+*/
+
 public class OutputFormatting {
 
     public static void main(String[] args) {
