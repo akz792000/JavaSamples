@@ -27,6 +27,24 @@ public class SubArray {
         // result
         int result = 0;
 
+        /*
+
+        // Pick starting point
+        for (int i = 0; i < length; i++) {
+
+            // Pick ending point
+            for (int j = i; j < length; j++) {
+
+                // Print subarray between current starting
+                // and ending points
+                for (int k = i; k <= j; k++)
+                    System.out.print(items[k] + " ");
+
+            }
+        }
+
+        */
+
         // size of array element
         for (int s = 0; s < length; s++) {
 
