@@ -27,7 +27,7 @@ ERROR!
 ERROR!
 */
 
-public class Arraylist {
+public class ArraylistSample {
 
     public static void main(String[] args) {
         //Input
