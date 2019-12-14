@@ -1,8 +1,6 @@
 package com.sample;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Scanner;
+import java.util.*;
 
 /*
 In computer science, a double-ended queue (dequeue, often abbreviated to deque, pronounced deck) is an abstract data type
@@ -19,21 +17,68 @@ public class DequeueSample {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Deque<Integer> deque = new ArrayDeque<Integer>();
-        int n = in.nextInt();
-        int m = in.nextInt();
+        int length = in.nextInt();
+        int interval = in.nextInt();
 
-        for (int i = 0; i < n; i++) {
+        // Pick starting point
+        int max = 0;
+        Deque<Integer> deque = new ArrayDeque<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < length; i++) {
             int num = in.nextInt();
-            deque.push(num);
-        }
+            deque.add(num);
 
-        Integer temp = deque.poll();
-        while (temp != null) {
-            for (int i = 0; i < m - 1; i++) {
-                //int deque.peek();
+            Integer val = map.get(num);
+            if (val == null) {
+                val = 0;
+            }
+            val++;
+            map.put(num, val);
+
+            if (deque.size() == interval) {
+                int len = map.size();
+                if (max < len) {
+                    max = len;
+                }
+
+                val = deque.removeFirst();
+                int cnt = map.get(val) - 1;
+                if (cnt == 0) {
+                    map.remove(val);
+                } else {
+                    map.put(val, cnt);
+                }
             }
         }
 
+        System.out.println(max);
+
+        /*
+                    Scanner in = new Scanner(System.in);
+            int length = in.nextInt();
+            int interval = in.nextInt();
+
+            // Pick starting point
+            int max = 0;
+
+            Deque<Integer> deque = new ArrayDeque<>();
+            for (int i = 0; i < length; i++) {
+                int num = in.nextInt();
+                deque.add(num);
+                if (deque.size() == interval) {
+                    Set<Integer> list = new HashSet<>();
+                    for (Integer dequeItem : deque) {
+                        list.add(dequeItem);
+                    }
+                    int len = list.size();
+                    if (max < len) {
+                        max = len;
+                    }
+                    deque.removeFirst();
+                }
+            }
+
+            System.out.println(max);
+         */
     }
 }

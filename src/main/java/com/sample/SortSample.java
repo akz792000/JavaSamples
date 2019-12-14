@@ -7,7 +7,7 @@ class Sorter implements Comparator<Student> {
     @Override
     public int compare(Student o1, Student o2) {
         if (o1.getCgpa() == o2.getCgpa()) {
-            int result = o1.getFname().compareTo(o2.getFname());
+            int result = o1.getName().compareTo(o2.getName());
             if (result == 0) {
                 return o2.getId() > o1.getId() ? 1 : -1;
             }
@@ -21,13 +21,13 @@ class Sorter implements Comparator<Student> {
 class Student {
 
     private int id;
-    private String fname;
+    private String name;
     private double cgpa;
 
-    public Student(int id, String fname, double cgpa) {
+    public Student(int id, String name, double cgpa) {
         super();
         this.id = id;
-        this.fname = fname;
+        this.name = name;
         this.cgpa = cgpa;
     }
 
@@ -35,8 +35,8 @@ class Student {
         return id;
     }
 
-    public String getFname() {
-        return fname;
+    public String getName() {
+        return name;
     }
 
     public double getCgpa() {
@@ -63,7 +63,7 @@ public class SortSample {
 
         studentList.sort(new Sorter());
         for (Student st : studentList) {
-            System.out.println(st.getFname());
+            System.out.println(st.getName());
         }
     }
 }
