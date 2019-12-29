@@ -1,11 +1,8 @@
 package com.pattern.observer;
 
 /*
-    behavioral pattern
-    The Observer pattern, also known as the Publish-Subscriber pattern, is one of the behavioral design patterns
-    that defines a one-to-many relationship between objects. For example, when the state of one object is
-    modified, all its dependents are notified and updated automatically.
-    Mainly, this pattern is used to implement distributed event handling systems.
+    Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects
+    about any events that happen to the object they’re observing.
  */
 
 public class ObserverPatternDemo {
