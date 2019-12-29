@@ -1,6 +1,7 @@
 package com.pattern.behavioral.command;
 
 public abstract class Command {
+
     public Editor editor;
     private String backup;
 
@@ -17,4 +18,5 @@ public abstract class Command {
     }
 
     public abstract boolean execute();
+
 }

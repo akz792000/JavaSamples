@@ -4,11 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 
 public class Editor {
+
     public JTextArea textField;
     public String clipboard;
-    private CommandHistory history = new CommandHistory();
+    private Stack<Command> history = new Stack<>();
 
     public void init() {
         JFrame frame = new JFrame("Text editor (type & use buttons, Luke!)");
