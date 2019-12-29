@@ -5,7 +5,7 @@ package com.pattern.behavioral.observer;
     about any events that happen to the object they’re observing.
  */
 
-public class ObserverPatternDemo {
+public class ObserverDemo {
 
     public static void main(String[] args) {
         AbstractStockMarket market = new StockMarket();

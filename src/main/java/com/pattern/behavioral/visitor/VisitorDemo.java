@@ -5,7 +5,7 @@ package com.pattern.behavioral.visitor;
     A practical result of this separation is the ability to add new operations to existing object structures without modifying the structures.
  */
 
-public class VisitorPatternDemo {
+public class VisitorDemo {
 
     public static void main(String[] args) {
 

@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
     Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.
  */
 
-public class ChangeOfResponsibilityPatternDemo {
+public class ChangeOfResponsibilityDemo {
 
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static Server server;

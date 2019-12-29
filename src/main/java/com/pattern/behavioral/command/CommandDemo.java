@@ -5,7 +5,7 @@ package com.pattern.behavioral.command;
     This transformation lets you parameterize methods with different requests, delay or queue a request’s execution, and support undoable operations.
  */
 
-public class CommandPatternDemo {
+public class CommandDemo {
 
     public static void main(String[] args) {
         Editor editor = new Editor();
