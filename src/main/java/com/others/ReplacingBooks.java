@@ -36,6 +36,10 @@ public class ReplacingBooks {
         return res;
     }
 
+    //==================================================================================================================
+    //==================================================================================================================
+    //==================================================================================================================
+
     static int len = 0;
 
     enum Direction {BACKWARD, FORWARD}
@@ -147,7 +151,11 @@ public class ReplacingBooks {
         return result;
     }
 
-    public static int solution(int[] A, int K) {
+    //==================================================================================================================
+    //==================================================================================================================
+    //==================================================================================================================
+
+    public int solution2(int[] A, int K) {
         Set<Integer> numbers = new HashSet<>();
         for (int i = 0; i < A.length; i++) numbers.add(A[i]);
         int res = 0;
@@ -182,11 +190,99 @@ public class ReplacingBooks {
         return res;
     }
 
+    //==================================================================================================================
+    //==================================================================================================================
+    //==================================================================================================================
+
+    static class LinkedNode {
+        final int val;
+        LinkedNode next;
+
+        LinkedNode(int val) {
+            this.val = val;
+        }
+
+        private LinkedNode last(LinkedNode linkedNode) {
+            return linkedNode.next == null ? linkedNode : last(linkedNode.next);
+        }
+
+        LinkedNode lastNode() {
+            return last(this);
+        }
+
+    }
+
+    static class PositionQueue {
+
+        LinkedNode node;
+
+        boolean isEmpty() {
+            return node == null;
+        }
+
+        void add(int val) {
+            if (isEmpty()) {
+                node = new LinkedNode(val);
+            } else {
+                LinkedNode temp = node.lastNode();
+                temp.next = new LinkedNode(val);
+            }
+        }
+
+        int poll() {
+            int result = node.val;
+            node = node.next;
+            return result;
+        }
+    }
+
+    public static int solution(int[] A, int K) {
+        Set<Integer> numbers = new HashSet<>();
+        for (int i = 0; i < A.length; i++) numbers.add(A[i]);
+        int res = 0;
+        for (Integer number : numbers) {
+            int sum = 0;
+            int before = 0;
+            int rem = K;
+            PositionQueue position = new PositionQueue();
+            for (int i = 0; i < A.length; i++) {
+                if (A[i] != number) {
+                    if (rem > 0) {
+                        rem--;
+                        sum++;
+                    } else {
+                        if (res < sum) res = sum;
+                        if (K > 0) {
+                            sum -= position.isEmpty() ? 1 : position.poll();
+                            if (sum < 0) sum = 0;
+                        } else {
+                            sum = 0;
+                        }
+                    }
+                    position.add(before);
+                    before = 0;
+                } else {
+                    sum++;
+                    before++;
+                }
+            }
+            if (res < sum) res = sum;
+        }
+        return res;
+    }
+
+    //==================================================================================================================
+    //==================================================================================================================
+    //==================================================================================================================
+
+
+
+
     public static void main(String[] args) {
-        System.out.println("2 " + solution0(new int[]{1, 1, 0, 1, 1, 0, 0, 0, 0}, 1) + " " + 5);
+        System.out.println("13 " + solution(new int[]{1, 3, 3, 2, 2, 3, 3, 3}, 1) + " " + 4);
 
         System.out.println("1 " + solution(new int[]{1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 2, 2}, 0) + " " + 4);
-        System.out.println("2 " + solution0(new int[]{1, 1, 0, 1, 1, 0, 0, 0, 0}, 1) + " " + 5);
+        System.out.println("2 " + solution(new int[]{1, 1, 0, 1, 1, 0, 0, 0, 0}, 1) + " " + 5);
         System.out.println("3 " + solution(new int[]{1, 2, 3, 4, 5, 6, 7, 2, 1, 1, 1, 3, 1}, 5) + " " + 9);
         System.out.println("4 " + solution(new int[]{1, 1, 4, 3, 4, 1, 1}, 2) + " " + 4);
         System.out.println("5 " + solution(new int[]{1}, 0) + " " + 1);
