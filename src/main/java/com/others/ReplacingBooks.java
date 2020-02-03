@@ -1,9 +1,6 @@
 package com.others;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class ReplacingBooks {
 
@@ -122,7 +119,7 @@ public class ReplacingBooks {
 
     }
 
-    public static int solution(int[] A, int K) {
+    public static int solution1(int[] A, int K) {
         len = A.length;
         Map<Integer, Node> nodes = new HashMap<>();
         for (int i = 0; i < A.length; i++) {
@@ -150,20 +147,57 @@ public class ReplacingBooks {
         return result;
     }
 
+    public static int solution(int[] A, int K) {
+        Set<Integer> numbers = new HashSet<>();
+        for (int i = 0; i < A.length; i++) numbers.add(A[i]);
+        int res = 0;
+        for (Integer number : numbers) {
+            int sum = 0;
+            int before = 0;
+            int rem = K;
+            Queue<Integer> pos = new LinkedList<>();
+            for (int i = 0; i < A.length; i++) {
+                if (A[i] != number) {
+                    if (rem > 0) {
+                        rem--;
+                        sum++;
+                    } else {
+                        if (res < sum) res = sum;
+                        if (K > 0) {
+                            sum -= pos.isEmpty() ? 1 : pos.poll();
+                            if (sum < 0) sum = 0;
+                        } else {
+                            sum = 0;
+                        }
+                    }
+                    pos.add(before);
+                    before = 0;
+                } else {
+                    sum++;
+                    before++;
+                }
+            }
+            if (res < sum) res = sum;
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
+        System.out.println("2 " + solution0(new int[]{1, 1, 0, 1, 1, 0, 0, 0, 0}, 1) + " " + 5);
 
-        //System.out.println(solution0(new int[]{1, 2, 3, 4, 5, 6, 7, 2, 1, 1, 1, 3, 1}, 5)); // 9
-        System.out.println(solution(new int[]{1, 2, 3, 4, 5, 6, 7, 2, 1, 1, 1, 3, 1}, 5)); // 9
-
-        System.out.println(solution(new int[]{1, 1, 4, 3, 4, 1, 1}, 2)); // 4
-        System.out.println(solution(new int[]{1}, 0)); // 1
-        System.out.println(solution(new int[]{1, 1, 3, 4, 3, 3, 4}, 2)); // 5
-        System.out.println(solution(new int[]{1, 2, 1, 2, 2, 1, 2}, 0)); // 2
-        System.out.println(solution(new int[]{1, 2, 1, 2, 2, 1, 2}, 1));  // 4
-        System.out.println(solution(new int[]{1, 2, 1, 2, 1, 2}, 1));  // 3
-        System.out.println(solution(new int[]{1, 1, 3, 1}, 2)); // 4
-        System.out.println(solution(new int[]{4, 5, 5, 4, 2, 2, 4}, 0)); // 2
-        System.out.println(solution(new int[]{1, 3, 3, 2}, 2)); // 4
+        System.out.println("1 " + solution(new int[]{1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 2, 2}, 0) + " " + 4);
+        System.out.println("2 " + solution0(new int[]{1, 1, 0, 1, 1, 0, 0, 0, 0}, 1) + " " + 5);
+        System.out.println("3 " + solution(new int[]{1, 2, 3, 4, 5, 6, 7, 2, 1, 1, 1, 3, 1}, 5) + " " + 9);
+        System.out.println("4 " + solution(new int[]{1, 1, 4, 3, 4, 1, 1}, 2) + " " + 4);
+        System.out.println("5 " + solution(new int[]{1}, 0) + " " + 1);
+        System.out.println("6 " + solution(new int[]{1, 1, 3, 4, 3, 3, 4}, 2) + " " + 5);
+        System.out.println("7 " + solution(new int[]{1, 2, 1, 2, 2, 1, 2}, 0) + " " + 2);
+        System.out.println("8 " + solution(new int[]{1, 2, 1, 2, 2, 1, 2}, 1) + " " + 4);
+        System.out.println("9 " + solution(new int[]{1, 2, 1, 2, 1, 2}, 1) + " " + 3);
+        System.out.println("10 " + solution(new int[]{1, 1, 3, 1}, 2) + " " + 4);
+        System.out.println("11 " + solution(new int[]{4, 5, 5, 4, 2, 2, 4}, 0) + " " + 2);
+        System.out.println("12 " + solution(new int[]{1, 3, 3, 2}, 2) + " " + 4);
+        System.out.println("13 " + solution(new int[]{1, 3, 3, 2, 2, 3, 3, 3}, 1) + " " + 4);
 
     }
 
