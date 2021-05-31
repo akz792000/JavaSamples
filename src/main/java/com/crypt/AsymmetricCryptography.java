@@ -101,8 +101,10 @@ public class AsymmetricCryptography {
         System.out.println("============= Private/Encrypt Public/Decrypt ==============");
         byMessage(ac, privateKey, publicKey);
         System.out.println("===========================================================");
+
         System.out.println();
-        System.out.println("============= Public/Decrypt  Private/Encrypt =============");
+
+        System.out.println("============= Public/Encrypt  Private/Decrypt =============");
         byMessage(ac, publicKey, privateKey);
         System.out.println("===========================================================");
     }
