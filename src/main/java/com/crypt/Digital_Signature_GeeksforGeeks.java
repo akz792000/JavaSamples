@@ -16,10 +16,10 @@ public class Digital_Signature_GeeksforGeeks {
     // Function to implement Digital signature
     // using SHA256 and RSA algorithm
     // by passing private key.
-    public static byte[] Create_Digital_Signature(byte[] input, PrivateKey Key) throws Exception {
+    public static byte[] Create_Digital_Signature(byte[] message, PrivateKey Key) throws Exception {
         Signature signature = Signature.getInstance(SIGNING_ALGORITHM);
         signature.initSign(Key);
-        signature.update(input);
+        signature.update(message);
         return signature.sign();
     }
 

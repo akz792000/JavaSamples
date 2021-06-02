@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.*;
+import java.security.spec.RSAPrivateCrtKeySpec;
 
 public class GenerateKeys {
     private KeyPairGenerator keyGen;
@@ -40,6 +41,52 @@ public class GenerateKeys {
         fos.close();
     }
 
+    public static String getPubliKeyAsXml(PrivateKey privateKey) throws Exception {
+        // key pair is in 'kp'
+        StringBuilder sb = new StringBuilder();
+        KeyFactory kf = KeyFactory.getInstance("RSA");
+        RSAPrivateCrtKeySpec ks = kf.getKeySpec(privateKey, RSAPrivateCrtKeySpec.class);
+        sb.append("<RSAKeyValue>");
+        sb.append("<Modulus>" + ks.getModulus() + "</Modulus>");
+        sb.append("<Exponent>" + ks.getPublicExponent() + "</Exponent>");
+        sb.append("<P>" + ks.getPrimeP() + "</P>");
+        sb.append("<Q>" + ks.getPrimeQ() + "</Q>");
+        sb.append("<DP>" + ks.getPrimeExponentP() + "</DP>");
+        sb.append("<DQ>" + ks.getPrimeExponentQ() + "</DQ>");
+        sb.append("<InverseQ>" + ks.getCrtCoefficient() + "</InverseQ>");
+        sb.append("<D>" + ks.getPrivateExponent() + "</D>");
+        sb.append("</RSAKeyValue>");
+        return sb.toString();
+    }
+
+    public static String getPublicKeyAsXml(PrivateKey privateKey) throws Exception {
+        StringBuilder sb = new StringBuilder();
+        KeyFactory kf = KeyFactory.getInstance("RSA");
+        RSAPrivateCrtKeySpec ks = kf.getKeySpec(privateKey, RSAPrivateCrtKeySpec.class);
+        sb.append("<RSAKeyValue>");
+        sb.append("<Modulus>" + ks.getModulus() + "</Modulus>");
+        sb.append("<Exponent>" + ks.getPublicExponent() + "</Exponent>");
+        sb.append("</RSAKeyValue>");
+        return sb.toString();
+    }
+
+    public static String getPrivateKeyAsXml(PrivateKey privateKey) throws Exception {
+        StringBuilder sb = new StringBuilder();
+        KeyFactory kf = KeyFactory.getInstance("RSA");
+        RSAPrivateCrtKeySpec ks = kf.getKeySpec(privateKey, RSAPrivateCrtKeySpec.class);
+        sb.append("<RSAKeyValue>");
+        sb.append("<Modulus>" + ks.getModulus() + "</Modulus>");
+        sb.append("<Exponent>" + ks.getPublicExponent() + "</Exponent>");
+        sb.append("<P>" + ks.getPrimeP() + "</P>");
+        sb.append("<Q>" + ks.getPrimeQ() + "</Q>");
+        sb.append("<DP>" + ks.getPrimeExponentP() + "</DP>");
+        sb.append("<DQ>" + ks.getPrimeExponentQ() + "</DQ>");
+        sb.append("<InverseQ>" + ks.getCrtCoefficient() + "</InverseQ>");
+        sb.append("<D>" + ks.getPrivateExponent() + "</D>");
+        sb.append("</RSAKeyValue>");
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         GenerateKeys gk;
         try {
@@ -47,10 +94,16 @@ public class GenerateKeys {
             gk.createKeys();
             gk.writeToFile("src/main/resources/KeyPair/publicKey", gk.getPublicKey().getEncoded());
             gk.writeToFile("src/main/resources/KeyPair/privateKey", gk.getPrivateKey().getEncoded());
+
+            System.out.println(getPrivateKeyAsXml(gk.getPrivateKey()));
+            System.out.println(getPubliKeyAsXml(gk.getPrivateKey()));
+
         } catch (NoSuchAlgorithmException | NoSuchProviderException e) {
             System.err.println(e.getMessage());
         } catch (IOException e) {
             System.err.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
