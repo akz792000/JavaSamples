@@ -97,7 +97,6 @@ public class GenerateKeys {
 
             System.out.println(getPrivateKeyAsXml(gk.getPrivateKey()));
             System.out.println(getPubliKeyAsXml(gk.getPrivateKey()));
-
         } catch (NoSuchAlgorithmException | NoSuchProviderException e) {
             System.err.println(e.getMessage());
         } catch (IOException e) {
