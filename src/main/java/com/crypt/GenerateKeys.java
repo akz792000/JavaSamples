@@ -94,6 +94,7 @@ public class GenerateKeys {
             gk.writeToFile("src/main/resources/KeyPair/publicKey", gk.getPublicKey().getEncoded());
             gk.writeToFile("src/main/resources/KeyPair/privateKey", gk.getPrivateKey().getEncoded());
 
+            // print xml format
             System.out.println(getPrivateKeyAsXml(gk.getPrivateKey()));
             System.out.println(getPubliKeyAsXml(gk.getPrivateKey()));
         } catch (NoSuchAlgorithmException | NoSuchProviderException e) {
