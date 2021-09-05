@@ -2,7 +2,8 @@
 # Intellij
 ######################
 .idea/
-out/
 *.iml
+out/
+target/
 
 
