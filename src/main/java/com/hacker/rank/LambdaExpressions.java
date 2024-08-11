@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// PALINDROME : a word, phrase, or sequence that reads the same backwards as forwards, e.g. madam or nurses run.
+
 /*
 --input--
 5
